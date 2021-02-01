@@ -1,0 +1,46 @@
+[
+{
+    "model": "tickets.category",
+    "pk": 1,
+    "fields": {
+        "title": "Default",
+        "slug": "default",
+        "is_active": true,
+        "created_at": "2021-02-01T17:00:51.676Z",
+        "updated_at": "2021-02-01T17:00:51.676Z"
+    }
+},
+{
+    "model": "tickets.category",
+    "pk": 2,
+    "fields": {
+        "title": "Technical Support",
+        "slug": "technical-support",
+        "is_active": true,
+        "created_at": "2021-02-01T17:02:31.303Z",
+        "updated_at": "2021-02-01T17:02:31.303Z"
+    }
+},
+{
+    "model": "tickets.category",
+    "pk": 3,
+    "fields": {
+        "title": "User Support",
+        "slug": "user-support",
+        "is_active": true,
+        "created_at": "2021-02-01T17:02:49.406Z",
+        "updated_at": "2021-02-01T17:02:49.406Z"
+    }
+},
+{
+    "model": "tickets.category",
+    "pk": 4,
+    "fields": {
+        "title": "Media",
+        "slug": "media",
+        "is_active": true,
+        "created_at": "2021-02-01T17:03:38.319Z",
+        "updated_at": "2021-02-01T17:03:38.319Z"
+    }
+}
+]
