@@ -33,7 +33,7 @@ class Category(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name = 'category'
