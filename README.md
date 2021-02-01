@@ -19,7 +19,7 @@ To run locally, do the usual:
    
     ./manage.py createsuperuser
 
-#. Populate the www and docs hostnames in the django.contrib.sites app::
+#. Loaddata:
 
     ./manage.py loaddata fixtures/file_name.json
 
