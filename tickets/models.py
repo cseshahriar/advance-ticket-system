@@ -3,8 +3,8 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 class Priority(models.Model):
-    name = models.CharField(max_length=30, unique=True)
-    code = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=30, unique=True, db_index=True)
+    code = models.CharField(max_length=30, unique=True, db_index=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -17,9 +17,9 @@ class Priority(models.Model):
         verbose_name_plural = 'priorities'
 
 class Category(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True, db_index=True)
     slug = models.SlugField(max_length=100, unique=True, null=True, 
-                                blank=True, editable=False)
+                                blank=True, editable=False, db_index=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -38,3 +38,19 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categories'
+
+class Color(models.Model):
+    """ ticket color """
+    name = models.CharField(max_length=50, unique=True, db_index=True)
+    code = models.CharField(max_length=50, unique=True, db_index=True)
+    hex_code = models.CharField(max_length=10)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'color'
+        verbose_name_plural = 'colors'
