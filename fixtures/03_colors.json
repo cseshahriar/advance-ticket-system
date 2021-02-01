@@ -1,0 +1,62 @@
+[
+{
+    "model": "tickets.color",
+    "pk": 1,
+    "fields": {
+        "name": "Red",
+        "code": "red",
+        "hex_code": "#FF0000",
+        "is_active": true,
+        "created_at": "2021-02-01T17:30:37.173Z",
+        "updated_at": "2021-02-01T17:30:37.173Z"
+    }
+},
+{
+    "model": "tickets.color",
+    "pk": 2,
+    "fields": {
+        "name": "Blue",
+        "code": "blue",
+        "hex_code": "#0000FF",
+        "is_active": true,
+        "created_at": "2021-02-01T17:30:57.833Z",
+        "updated_at": "2021-02-01T17:30:57.833Z"
+    }
+},
+{
+    "model": "tickets.color",
+    "pk": 3,
+    "fields": {
+        "name": "Yellow",
+        "code": "yellow",
+        "hex_code": "#FFFF00",
+        "is_active": true,
+        "created_at": "2021-02-01T17:32:13.137Z",
+        "updated_at": "2021-02-01T17:32:13.137Z"
+    }
+},
+{
+    "model": "tickets.color",
+    "pk": 4,
+    "fields": {
+        "name": "Green",
+        "code": "green",
+        "hex_code": "#008000",
+        "is_active": true,
+        "created_at": "2021-02-01T17:32:41.158Z",
+        "updated_at": "2021-02-01T17:32:41.158Z"
+    }
+},
+{
+    "model": "tickets.color",
+    "pk": 5,
+    "fields": {
+        "name": "Orange",
+        "code": "orange",
+        "hex_code": "#FFA500",
+        "is_active": true,
+        "created_at": "2021-02-01T17:33:08.194Z",
+        "updated_at": "2021-02-01T17:33:08.194Z"
+    }
+}
+]
