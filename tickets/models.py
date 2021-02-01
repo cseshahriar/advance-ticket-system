@@ -1,6 +1,17 @@
+import uuid
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.core.exceptions import ValidationError
+def validate_file(image):
+    file_size = image.file.size
+    limit_mb = 2
+    if file_size > limit_mb * 1024 * 1024:
+       raise ValidationError(f'Max size of file is {limit_mb} MB')
+
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class Priority(models.Model):
     name = models.CharField(max_length=30, unique=True, db_index=True)
@@ -39,6 +50,7 @@ class Category(models.Model):
         verbose_name = 'category'
         verbose_name_plural = 'categories'
 
+
 class Color(models.Model):
     """ ticket color """
     name = models.CharField(max_length=50, unique=True, db_index=True)
@@ -54,3 +66,46 @@ class Color(models.Model):
     class Meta:
         verbose_name = 'color'
         verbose_name_plural = 'colors'
+
+
+class Ticket(models.Model):
+    priority = models.ForeignKey(Priority, on_delete=models.PROTECT, 
+                                related_name='ticket_priority')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, 
+                                related_name='ticket_category')
+    color = models.ForeignKey(Color, on_delete=models.PROTECT, 
+                                related_name='ticket_color')
+    first_name = models.CharField(max_length=48)
+    last_name = models.CharField(max_length=48)
+    middle_name = models.CharField(max_length=48, null=True, blank=True)
+    subject = models.CharField(max_length=150)
+    description = models.TextField()
+    email = models.EmailField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=32)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        verbose_name = 'ticket'
+        verbose_name_plural = 'tickets'
+
+
+class Attachment(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    attachment = models.FileField(upload_to=user_directory_path, null=True,
+                                    blank=True, validators=[validate_file])
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.ticket.subject} - {self.file.name}'
+
+    class Meta:
+        verbose_name = 'attachment'
+        verbose_name_plural = 'attachments'
+
