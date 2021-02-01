@@ -3,6 +3,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from ckeditor.fields import RichTextField
+
 def validate_file(image):
     file_size = image.file.size
     limit_mb = 2
@@ -79,7 +81,7 @@ class Ticket(models.Model):
     last_name = models.CharField(max_length=48)
     middle_name = models.CharField(max_length=48, null=True, blank=True)
     subject = models.CharField(max_length=150)
-    description = models.TextField()
+    description = RichTextField()
     email = models.EmailField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=32)
     is_active = models.BooleanField(default=True)
