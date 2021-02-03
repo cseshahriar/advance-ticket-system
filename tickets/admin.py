@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import (Priority,Category, Color, Ticket)
+from . models import (Priority,Category, Color, Ticket, Attachment)
 
 
 @admin.register(Priority)
@@ -42,5 +42,16 @@ class TicketAdmin(admin.ModelAdmin):
     list_display_links = ('subject',)
     list_filter = ('priority', 'category', 'created_at')
     search_fields = ('subject', 'category', 'priority',)
+
+
+
+@admin.register(Attachment)
+class AttachmentAdmin(admin.ModelAdmin):
+    ordering = ['id']
+    list_display = ('id', 'ticket', 'attachment', 'is_active', 'created_at', 'updated_at')
+    list_display_links = ('ticket',)
+    list_filter = ('ticket', 'created_at')
+    search_fields = ('ticket',)
+
 
 
