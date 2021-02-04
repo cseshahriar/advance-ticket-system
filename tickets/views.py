@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 from . forms import TicketForm, AttachmentFormSet
 from . models import Priority, Category, Color, Ticket, Attachment
 
-class HomeView(CreateView):
+class TicketCreateView(CreateView):
     model = Ticket
     template_name = 'tickets/create.html'
     form_class = TicketForm
@@ -49,8 +49,10 @@ class HomeView(CreateView):
             self.request.POST, self.request.FILES)
 
         if form.is_valid() and attachment_form.is_valid():
+            logger.info(f'ticket form validate')
             return self.form_valid(form, attachment_form)
         else:
+            logger.error(f'ticket form validation errors')
             return self.form_invalid(form, attachment_form)
     
     def form_valid(self, form, attachment_form):
