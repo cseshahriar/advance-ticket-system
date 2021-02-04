@@ -4,7 +4,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 # from django.contrib.auth.mixins import PermissionRequiredMixin
 
-class DashboardView(LoginRequiredMixin,UserPassesTestMixin, TemplateView):
+import logging
+logger = logging.getLogger(__name__)
+
+class DashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
     
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
@@ -17,4 +20,5 @@ class DashboardView(LoginRequiredMixin,UserPassesTestMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # context['obj'] = model.objects.all() 
+        logger.info('Dashboard Overview')
         return context
