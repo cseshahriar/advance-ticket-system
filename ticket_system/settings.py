@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from . logging import LOGGING_CONF
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -155,3 +156,11 @@ CRISPY_CLASS_CONVERTERS = {
     'passwordinput': "form-control cst__radius",
     'select': "form-control cst__radius",
 }
+
+
+# Logging ---------------------------------------------------------------------
+# https://docs.djangoproject.com/en/3.0/topics/logging/
+
+LOGGING = LOGGING_CONF  # logging.py
+
+ADMIN_URL = 'manage'  # do not include any leading/trailing slashes
