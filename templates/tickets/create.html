@@ -110,17 +110,11 @@
             <div class="col-md-8">
                 <h1 class="home-label mb-3">Create a Ticket.</h1>
                 <p>Welcome to Support Centre</p>
+               
+                {% include "_message.html" %}
+                
                 <div class="card">
                     <div class="card-body">
-
-                        {% if messages %}
-                        <ul class="messages mt-3 mb-3">
-                            {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
-
                         {% if form.errors %}
                             {% for field in form %}
                                 {% for error in field.errors %}
