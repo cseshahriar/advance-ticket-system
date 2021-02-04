@@ -98,7 +98,7 @@ class Ticket(models.Model):
 
 class Attachment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
-    attachment = models.FileField(upload_to=user_directory_path, null=True,
+    attachment = models.FileField(upload_to='attachments/%Y/%m/%d', null=True,
                                     blank=True, validators=[validate_file])
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)

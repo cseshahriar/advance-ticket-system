@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.forms.models import inlineformset_factory
+from django.forms.models import modelformset_factory
 from . models import Ticket, Attachment
 
 
@@ -15,13 +15,11 @@ class TicketForm(ModelForm):
 class AttachmentForm(ModelForm):
     class Meta:
         model = Attachment
-        fields = ['ticket', 'attachment']
+        fields = ['attachment']
 
-
-AttachmentFormSet = inlineformset_factory(Ticket,
+AttachmentFormSet = modelformset_factory(
     Attachment,
-    fields=['attachment'],
-    # set to false because cant' delete an non-exsitant instance
-    can_delete=False,
-    extra=1
+    form=AttachmentForm,
+    extra=1,
+    can_delete=True
 )

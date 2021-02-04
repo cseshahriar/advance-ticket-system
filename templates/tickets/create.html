@@ -247,6 +247,7 @@
                                 {{ attachment_form.management_form }}
                                 {{ attachment_form.non_form_errors }}
                                     {% for form in attachment_form %}
+                                        {{ form.id }}
                                         <div class="inline {{ attachment_form.prefix }}">
                                             {% for field in form.visible_fields %}
                                                 <div class="row mb-1">

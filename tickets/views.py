@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView 
-from . models import Priority, Category, Color, Ticket, Attachment
-from . forms import TicketForm, AttachmentFormSet
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from django.urls import reverse_lazy
+from django.db import transaction
+from . forms import TicketForm, AttachmentFormSet
+from . models import Priority, Category, Color, Ticket, Attachment
 
 class HomeView(CreateView):
     model = Ticket
@@ -26,6 +27,8 @@ class HomeView(CreateView):
             self.get_context_data(form=form, attachment_form=attachment_form,)
         )
 
+ 
+
     def post(self, request, *args, **kwargs):
         """
         Handles POST requests, instantiating a form instance and its inline
@@ -35,7 +38,9 @@ class HomeView(CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        attachment_form = AttachmentFormSet(self.request.POST)
+        attachment_form = AttachmentFormSet(
+            self.request.POST, self.request.FILES)
+
         if form.is_valid() and attachment_form.is_valid():
             return self.form_valid(form, attachment_form)
         else:
@@ -51,15 +56,10 @@ class HomeView(CreateView):
 
         Returns: an HttpResponse to success url
         """
-        self.object = form.save(commit=False)
-        # pre-processing for Assignment instance here...
-        self.object.save()
-
-        # saving AssignmentQuestion Instances
+        self.object = form.save()
         attachments = attachment_form.save(commit=False)
         for attachment in attachments:
-            #  change the AssignmentQuestion instance values here
-            # attachments.ticket = self.get_object()
+            attachment.ticket = self.object
             attachment.save()
 
         messages.success(self.request, 'Ticket has been created.')
