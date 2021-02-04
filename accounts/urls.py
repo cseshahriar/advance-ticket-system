@@ -1,12 +1,17 @@
 from django.urls import path 
 from django.contrib.auth import views as auth_views
+from . views import DashboardView
 
 urlpatterns = [
+    # user urls
     path(
         'login/',
         auth_views.LoginView.as_view(),
         name='accounts_login',
     ),
+
+    # dashboard
+    path('dashboard/', DashboardView.as_view(), name='accounts_dashboard'), 
 ]
 
 """
