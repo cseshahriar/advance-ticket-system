@@ -41,10 +41,12 @@ INSTALLED_APPS = [
 
     # plugins
     'crispy_forms',
+    'ckeditor',
 
     # local apps
     'tickets',
-    'ckeditor',
+    'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -127,6 +129,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),
+]
 
 # Media Folder Settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -164,3 +169,7 @@ CRISPY_CLASS_CONVERTERS = {
 LOGGING = LOGGING_CONF  # logging.py
 
 ADMIN_URL = 'manage'  # do not include any leading/trailing slashes
+
+LOGIN_REDIRECT_URL = '/accounts/dashboard/' # login after url
+LOGIN_URL = '/accounts/login/' # login url
+LOGOUT_REDIRECT_URL = '/'
