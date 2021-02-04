@@ -33,7 +33,6 @@ class ColorAdmin(admin.ModelAdmin):
     list_filter = ('created_at',)
     search_fields = ('name', 'code',)
 
-
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     ordering = ['id']
@@ -42,7 +41,6 @@ class TicketAdmin(admin.ModelAdmin):
     list_display_links = ('subject',)
     list_filter = ('priority', 'category', 'created_at')
     search_fields = ('subject', 'category', 'priority',)
-
 
 
 @admin.register(Attachment)
