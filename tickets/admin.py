@@ -4,7 +4,7 @@ from . models import (Priority,Category, Color, Ticket, Attachment)
 
 @admin.register(Priority)
 class PriorityAdmin(admin.ModelAdmin):
-    ordering = ['id']
+    ordering = ['order']
     list_display = (
         'id', 'name', 'code', 'order', 'is_active', 'created_at', 'updated_at',
     )
