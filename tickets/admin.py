@@ -6,7 +6,7 @@ from . models import (Priority,Category, Color, Ticket, Attachment)
 class PriorityAdmin(admin.ModelAdmin):
     ordering = ['id']
     list_display = (
-        'id', 'name', 'code', 'is_active', 'created_at', 'updated_at',
+        'id', 'name', 'code', 'order', 'is_active', 'created_at', 'updated_at',
     )
     list_display_links = ('name',)
     list_filter = ('created_at',)

@@ -18,6 +18,7 @@ def user_directory_path(instance, filename):
 class Priority(models.Model):
     name = models.CharField(max_length=30, unique=True, db_index=True)
     code = models.CharField(max_length=30, unique=True, db_index=True)
+    order = models.PositiveSmallIntegerField(unique=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
