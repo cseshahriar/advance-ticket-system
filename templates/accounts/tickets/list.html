@@ -48,15 +48,15 @@
                       <td>{{ ticket.priority }}</td>
                       <td>{{ ticket.color }}</td>
                       <td class="text-center">
-                          {% if ticket.is_active %}
-                            <badge class="badge badge-success">
-                                <i class="fa fa-check" aria-hidden="true"></i>
-                            </badge>
-                          {% else %}
-                            <badge class="badge badge-danger">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </badge>
-                          {% endif %}
+                            {% if ticket.status == 'open' %}
+                                <badge class="badge badge-info">{{ ticket.status|title }}</badge>
+                            {% elif ticket.status == 'resolved' %}
+                                <badge class="badge badge-success">{{ ticket.status|title }}</badge>
+                            {% elif ticket.status == 'unsolved' %}
+                            <badge class="badge badge-warning">{{ ticket.status|title }}</badge>
+                            {% elif ticket.status == 'close' %}
+                                <badge class="badge badge-secondary">{{ ticket.status|title }}</badge>
+                            {% endif %}
                       </td>
                       <td>{{ ticket.created_at|naturaltime  }}</td>
                       <td>

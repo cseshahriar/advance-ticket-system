@@ -61,6 +61,9 @@
         .btn-mt30 {
             margin-top: -30px;
         }
+        #div_id_priority label, #div_id_color label, #div_id_category label{
+            display: none;
+        }
     </style>
 
     <!-- Custom styles for this template -->
@@ -134,7 +137,7 @@
                                         <label for="first_name" class="form-label">First Name</label>
                                     </div>
                                     <div class="col-9">
-                                        <input name="first_name" id="first_name" class="form-control">
+                                        <input name="first_name" id="first_name" value="{{ user.first_name }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -145,7 +148,7 @@
                                         <label for="last_name" class="form-label">Last Name</label>
                                     </div>
                                     <div class="col-9">
-                                        <input name="last_name" id="last_name" class="form-control">
+                                        <input name="last_name" id="last_name" value="{{ user.last_name }}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +159,7 @@
                                         <label for="email" class="form-label">Email</label>
                                     </div>
                                     <div class="col-9">
-                                        <input type="email" name="email" class="form-control" id="email">
+                                        <input type="email" name="email" value="{{ user.email }}" class="form-control" id="email">
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +170,7 @@
                                         <label for="phone" class="form-label">Phone</label>
                                     </div>
                                     <div class="col-9">
-                                        <input type="tel" name="phone" class="form-control" id="phone">
+                                        <input type="tel" name="phone" value="" class="form-control" id="phone">
                                     </div>
                                 </div>
                             </div>
@@ -178,10 +181,7 @@
                                         <label for="priority" class="form-label">Priority</label>
                                     </div>
                                     <div class="col-9">
-                                        <select name="priority" id="priority" class="form-control">
-                                            <option value="1">Low</option>
-                                            <option value="2">Medium</option>
-                                        </select>
+                                        {{ form.priority|as_crispy_field:"bootstrap" }}
                                     </div>
                                 </div>
                             </div>
@@ -192,10 +192,7 @@
                                         <label for="color" class="form-label">Color</label>
                                     </div>
                                     <div class="col-9">
-                                        <select name="color" id="color" class="form-control">
-                                            <option value="1">Red</option>
-                                            <option value="2">blue</option>
-                                        </select>
+                                       {{ form.color|as_crispy_field:"bootstrap" }}
                                     </div>
                                 </div>
                             </div>
@@ -206,10 +203,7 @@
                                         <label for="category" class="form-label">Ticket Category</label>
                                     </div>
                                     <div class="col-9">
-                                        <select name="category" id="category" class="form-control">
-                                            <option value="1">Default</option>
-                                            <option value="2">technical Support</option>
-                                        </select>
+                                        {{ form.category|as_crispy_field:"bootstrap" }}
                                     </div>
                                 </div>
                             </div>
