@@ -42,3 +42,6 @@ class TicketsListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['tickets'] = Ticket.objects.all().order_by('-pk')
         return context 
+
+def ticket_status_update(request):
+    pass

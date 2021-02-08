@@ -65,31 +65,47 @@
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                             &nbsp;&nbsp;
+                            <!-- modal -->
+                            <button type="button" class="text-success" data-toggle="modal" data-target="#exampleModal-{{ticket.pk}}" 
+                            data-whatever="@mdo" style="border:0;background:0">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </button>
 
-                            <!-- Button trigger modal -->
-                            <a class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ...
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
+                            <div class="modal fade" id="exampleModal-{{ticket.pk}}" tabindex="-1" 
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ticket (#{{ ticket.pk }})</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" class="status-form">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="message-text" class="col-form-label">Ticket Status:</label>
+                                                <select name="status" class="form-control">
+                                                    <option value="open" {% if ticket.status == 'open' %}selected{% endif %}>Open</option>
+                                                    <option value="resolved" {% if ticket.status == 'resolved' %}selected{% endif %}>Resolved</option>
+                                                    <option value="unsolved" {% if ticket.status == 'unsolved' %}selected{% endif %}>Unsolved</option>
+                                                    <option value="close" {% if ticket.status == 'close' %}selected{% endif %}>Close</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="status_update btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <!-- / modal -->
 
+                        </div>
                       </td>
                     </tr>
                     {% endfor %}
@@ -163,6 +179,8 @@
             "bInfo": false,
             "bAutoWidth": false });
     });
+
+    // status update 
 </script>
 {% endblock extrascripts %}
     
