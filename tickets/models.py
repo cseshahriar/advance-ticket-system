@@ -72,6 +72,12 @@ class Color(models.Model):
 
 
 class Ticket(models.Model):
+    STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('resolved', 'Resolved'),
+        ('unsolved', 'Unsolved'),
+        ('close', 'Close'),
+    ]
     priority = models.ForeignKey(Priority, on_delete=models.PROTECT, 
                                 related_name='ticket_priority')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, 
@@ -85,7 +91,8 @@ class Ticket(models.Model):
     description = RichTextField()
     email = models.EmailField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=32)
-    is_active = models.BooleanField(default=True)
+    status = models.CharField(max_length=10,choices=STATUS_CHOICES,
+                                default='open')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
