@@ -93,15 +93,23 @@
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Docs</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts_login' %}" tabindex="-1" aria-disabled="true">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logout</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff or user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts_dashboard' %}" tabindex="-1" aria-disabled="true">Dashboard</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts_logout' %}" tabindex="-1" aria-disabled="true">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts_login' %}" tabindex="-1" aria-disabled="true">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
