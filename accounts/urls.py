@@ -1,7 +1,7 @@
 from django.urls import path 
 from django.contrib.auth import views as auth_views
 from . views import (
-    DashboardView, TicketsListView
+    DashboardView, TicketsListView, TicketUpdateView
 )
 
 urlpatterns = [
@@ -22,6 +22,8 @@ urlpatterns = [
 
     # tickets urls
     path('tickets/list', TicketsListView.as_view(), name='tickets_list'),
+    path('tickets/update/<int:pk>/', TicketUpdateView.as_view(), 
+            name='accounts_ticket_update'),
 ]
 
 """

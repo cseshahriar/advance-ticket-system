@@ -25,6 +25,8 @@
             <h3 class="tile-title">Ticket List</h3>
             <div class="tile-body">
               <div class="table-responsive">
+                {% include '_message.html' %}
+
                 <table class="table table-hover table-bordered" id="ticketsTable">
                   <thead>
                     <tr class="text-center">
@@ -65,11 +67,14 @@
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
                             &nbsp;&nbsp;
+                            <a href="{% url 'accounts_ticket_update' ticket.pk %}">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
                             <!-- modal -->
-                            <button type="button" class="text-success" data-toggle="modal" data-target="#exampleModal-{{ticket.pk}}" 
+                            <!-- <button type="button" class="text-success" data-toggle="modal" data-target="#exampleModal-{{ticket.pk}}" 
                             data-whatever="@mdo" style="border:0;background:0">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            </button>
+                            </button> -->
 
                             <div class="modal fade" id="exampleModal-{{ticket.pk}}" tabindex="-1" 
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
