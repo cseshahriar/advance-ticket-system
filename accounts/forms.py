@@ -1,6 +1,7 @@
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from tickets.models import Ticket, Attachment
+from django.forms import HiddenInput
 
 
 class TicketForm(ModelForm):
@@ -16,7 +17,6 @@ class AttachmentForm(ModelForm):
     class Meta:
         model = Attachment
         fields = ['ticket', 'attachment']
-        # ticket must be hidden widget
 
 AttachmentFormSet = modelformset_factory(
     Attachment,
